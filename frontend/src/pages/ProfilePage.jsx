@@ -52,7 +52,7 @@ const ProfilePage = () => {
     validInput(input) && nameUpdate({ fullName: input });
   };
   return (
-    <div className="h-screen pt-20">
+    <div className="h-screen pt-20 min-h-fit">
       <div className="max-w-2xl min-w-fit mx-auto p-4 py-8">
         <div className="bg-base-300 rounded-xl p-6 space-y-8 ">
           <div className="text-center">
@@ -83,7 +83,7 @@ const ProfilePage = () => {
                 />
               </label>
             </div>
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm text-zinc-500">
               {isUpdatingProfile
                 ? "Updating Profile..."
                 : "Click the camera icon to update your profile"}
@@ -91,7 +91,7 @@ const ProfilePage = () => {
           </div>
           <div className="space-y-6 ">
             <div className="space-y-1.5">
-              <div className="text-sm text-zinc-400 flex items-center gap-2">
+              <div className="text-sm text-zinc-500 flex items-center gap-2">
                 <User className="size-4" />
                 User Name (Click to Edit)
               </div>
@@ -105,7 +105,7 @@ const ProfilePage = () => {
           </div>
           <div className="space-y-6 ">
             <div className="space-y-1.5">
-              <div className="text-sm text-zinc-400 flex items-center gap-2">
+              <div className="text-sm text-zinc-500 flex items-center gap-2">
                 <Mail className="size-4" />
                 Email
               </div>
