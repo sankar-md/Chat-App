@@ -1,12 +1,4 @@
-import {
-  Eye,
-  EyeOff,
-  Loader,
-  Lock,
-  Mail,
-  MessageSquare,
-  User,
-} from "lucide-react";
+import { Eye, EyeOff, Lock, Mail, MessageSquare, User } from "lucide-react";
 import React, { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { Link, useNavigate } from "react-router-dom";
@@ -135,7 +127,7 @@ const SignUpPage = () => {
             >
               {isSigningUp ? (
                 <>
-                  <Loader className="animate-spin size-6 mr-2" />
+                  <span className="loading loading-infinity loading-md"></span>
                   Signing Up
                 </>
               ) : (

@@ -19,7 +19,7 @@ const App = () => {
   if (isCheckingAuth && !authUser) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <Loader className="animate-spin size-10" />
+        <span class="loading loading-infinity loading-lg"></span>
       </div>
     );
   }

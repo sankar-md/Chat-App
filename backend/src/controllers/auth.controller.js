@@ -80,16 +80,27 @@ export const logout = (req, res) => {
 export const updateProfile = async (req, res) => {
   try {
     const { profilePic } = req.body;
-
     const userId = req.user._id;
-
     if (!profilePic) {
       return res.status(400).json({
         message: "profile pic is required",
       });
     }
-
-    const uploadResponse = await cloudinary.uploader.upload(profilePic);
+    const uploadResponse = await cloudinary.uploader.upload(
+      profilePic,
+      {
+        folder: "user_profiles",
+        format: "jpg",
+        ObjectFit: "cover",
+      },
+      (error, result) => {
+        if (error) {
+          console.error("Upload error:", error);
+        } else {
+          console.log("Upload successful");
+        }
+      }
+    );
     const updateUser = await User.findByIdAndUpdate(
       userId,
       { profilePic: uploadResponse.secure_url },
@@ -98,6 +109,27 @@ export const updateProfile = async (req, res) => {
     res.status(200).json(updateUser);
   } catch (error) {
     console.log("Error in updateProfile controller ", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+export const updateProfileName = async (req, res) => {
+  const { fullName } = req.body;
+  const userId = req.user._id;
+  if (!fullName) {
+    return res.status(400).json({
+      message: "Full Name is required",
+    });
+  }
+  try {
+    const updateUser = await User.findByIdAndUpdate(
+      userId,
+      { fullName },
+      { new: true }
+    );
+    res.status(200).json(updateUser);
+  } catch (error) {
+    console.log("Error in updateProfileName controller ", error.message);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
